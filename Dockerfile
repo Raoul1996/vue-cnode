@@ -11,7 +11,7 @@
 # CMD apt-get update; apt-get install -y nodejs; npm install; node /server/server.js
 # # CMD ["/usr/bin/node", "/server/server.js"] 
 
-FROM node:argon
+FROM node:4.6.2
 
 # Create app directory
 RUN mkdir -p /usr/src/app
