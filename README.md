@@ -2,9 +2,9 @@
 
 ## 介绍
 
-用 Vue 做的 [CNode](https://cnodejs.org/) 官网，一个单页面应用， 实现了所有的API功能。
-
-项目结构由[Vue的脚手架](http://vue-loader.vuejs.org/en/start/setup.html)生成，UI框架用了[bootstrap](https://github.com/twbs/bootstrap)
+- 用 Vue 做的 [CNode](https://cnodejs.org/) 官网，一个单页面应用， 实现了所有的API功能。
+- --------->[在线预览效果](http://cnode.daoapp.io)<------
+- 项目结构由[Vue的脚手架](http://vue-loader.vuejs.org/en/start/setup.html)生成，UI框架用了[bootstrap](https://github.com/twbs/bootstrap)
 
 ## 注意
 
