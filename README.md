@@ -3,13 +3,14 @@
 ## 介绍
 
 - 用 Vue 做的 [CNode](https://cnodejs.org/) 官网，一个单页面应用， 实现了所有的API功能。
-- --------->[在线预览效果](http://cnode.daoapp.io)<------
-- 项目结构由[Vue的脚手架](http://vue-loader.vuejs.org/en/start/setup.html)生成，UI框架用了[bootstrap](https://github.com/twbs/bootstrap)
+- [Material Design](https://getmdl.io/index.html)风格，参考了[mdbootstrap](https://github.com/mdbootstrap/bootstrap-material-design)
+- [在线预览效果](http://cnode.daoapp.io) （还没更新到最新的版本 Orz）
+- 项目结构由[Vue的脚手架](http://vue-loader.vuejs.org/en/start/setup.html)生成
 
 ## 注意
 
 - 对于登录功能，由于没有相应的API，所以这里就简单粗暴直接使用[accessToken](https://cnodejs.org/api)进行登录了 ╮(╯_╰)╭
-- 使用现代浏览器进行浏览(最好是chrome)，当前并没有100%的适配移动端，后续会进行修复
+- 使用现代浏览器进行浏览(最好是chrome)
 
 ## 开始
 
@@ -35,6 +36,8 @@ npm run build
 
 ## 参考的项目
 
+- [bootstrap](https://github.com/twbs/bootstrap) 
+-  [mdbootstrap](https://github.com/mdbootstrap/bootstrap-material-design)
 - [element UI Toolkit for web](https://github.com/ElemeFE/element)
 - [Page Loading Effects](http://tympanus.net/codrops/2014/04/23/page-loading-effects/)
 
@@ -46,8 +49,7 @@ npm run build
 
 ## 后续
 
-- 优化项目, 是场景转化更合理
-- 去掉bootstrap，改造成[Material Design](https://getmdl.io/index.html)风格的
-- 适配移动端（使用flex布局）
-- 合理有效的应用svg
+- 持续优化
 - [Vuex](https://vuex.vuejs.org/zh-cn/)
+- 适配移动端
+- 合理有效的应用svg

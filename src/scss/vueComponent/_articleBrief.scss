@@ -1,0 +1,65 @@
+.article-brief {
+  min-height: 5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e7eaf1;
+
+  &:last-child {
+    border: 0 none;
+  }
+
+  &__avatar {
+    display: inline-block;
+    width: 5rem;
+    text-align: center;
+    vertical-align: top;
+  }
+
+  &__group {
+    display: inline-block;
+    padding-bottom: .75rem;
+  }
+
+  &__title {
+    position: relative;
+    margin-bottom: .75rem;
+    color: #000;
+    a {
+      color: inherit;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__meta {
+    margin-bottom: .75rem;
+    color: #808080;
+    span {
+      margin-right: 1.5rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  &__view {
+    color: #00abeb;
+  }
+
+  &__reply {
+    color: #ff6966;
+  }
+
+  &__replyTime {
+    color: #808080;
+  }
+
+  &__tag {
+    margin-right: .75rem;
+    display: inline-block;
+    padding: .1rem .75rem;
+    color: #c9b582;
+    border: 1px solid #ffe6a9;
+    border-radius: .2rem;
+    background-color: #fff4de;
+  }
+}

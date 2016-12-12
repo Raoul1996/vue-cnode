@@ -4,9 +4,9 @@ import VueResource from 'vue-resource';
 import Plugins from './plugins';
 import routes from './js/routes';
 
-require('./assets/css/font-awesome.min.css');
-require('./assets/css/animate.css');
-require('./scss/base.scss');
+require('./scss/bootstrap.scss');
+require('./assets/font-awesome.min.css');
+
 
 // vueRouter
 Vue.use(VueRouter);

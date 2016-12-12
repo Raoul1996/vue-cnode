@@ -66,6 +66,8 @@ module.exports = {
     // http://eslint.cn/docs/rules/new-cap
     "new-cap": ["error", { "capIsNewExceptions": ["Message", "Snap"] }],
     //
-    "no-unused-vars": ["error", { "args": "none" }]
+    "no-unused-vars": ["error", { "args": "none" }],
+    // http://eslint.cn/docs/rules/quote-props
+    "quote-props": "off"
   }
 }

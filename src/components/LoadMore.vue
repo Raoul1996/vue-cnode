@@ -2,7 +2,7 @@
   <div class="loadmore" :class="stateClass[state]">
     <div class="spinner"></div>
     <div class="loadmore__btn">
-      <button class="btn btn-info btn-lg btn-block" @click.stop="handleClick">Load more...</button>
+      <button class="btn btn-default btn-block" @click.stop="handleClick">Load more...</button>
     </div>
     <div class="loadmore__text">
       <p>没有更多了 ╮(╯_╰)╭</p>

@@ -1,6 +1,5 @@
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "SimplemdeCss" }] */
-import Simplemde from 'simplemde';
-import SimplemdeCss from 'simplemde.css';
+require('simplemde/dist/simplemde.min.css');
+const Simplemde = require('simplemde/dist/simplemde.min');
 
 const opt = {
   spellChecker: false,
