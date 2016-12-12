@@ -1,16 +1,16 @@
 <template>
   <transition name="message-slide" type="animation"
-              enter-active-class="animated fadeInDown"
-              leave-active-class="animated fadeOutUp">
-    <div class="vc-message" :class="'vc-message--' + type" v-show="visible"
+              enter-active-class="animated bounceInRight"
+              leave-active-class="animated bounceOutRight">
+    <div class="message" :class="'message--' + type" v-show="visible"
          @mouseenter="clearTimer"
          @mouseleave="startTimer">
-      <button type="button" class="close vc-message__closeBtn" @click="close">
+      <button type="button" class="close message__closeBtn" @click="close">
         <i class="fa fa-times"></i>
       </button>
 
-      <div class="vc-message__group">
-        <div class="vc-message__icon">
+      <div class="message__group">
+        <div class="message__icon">
           <i class="fa fa-2x" :class="typeIcon"></i>
         </div>
         <p>{{ message }}</p>

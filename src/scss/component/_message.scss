@@ -1,15 +1,12 @@
-@import "../variable";
-
-.vc-message {
+.message {
   position: fixed;
-  top: 20px;
-  left: 50%;
+  bottom: 1rem;
+  right: 0.5rem;
   color: #ffffff;
-  border-radius: 4px;
+  border-radius: 2px;
   border: 1px solid transparent;
-  padding: 12px 15px;
-  min-width: 300px;
-  margin-left: -150px;
+  padding: 0.6rem 0.75rem;
+  width: 400px;
 
   &--success {
     background-color: #DCF3D7;
@@ -33,10 +30,6 @@
   }
 
   &__closeBtn {
-    float: right;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: .2;
     margin-top: 4px;
   }
 
@@ -45,37 +38,35 @@
       font-size: 18px;
       margin-bottom: 0;
       padding-left: 30px;
-      line-height: 30px;
     }
   }
 
   &__icon {
     float: left;
     width: 40px;
-    padding-top: 1px;
   }
 
 }
 
 @-webkit-keyframes slideOutDown {
   0% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateY(0);
   }
 
   100% {
     visibility: hidden;
-    transform: translate3d(-50%, 100%, 0);
+    transform: translateY(-100%);
   }
 }
 
 @keyframes slideOutDown {
   0% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateY(0);
   }
 
   100% {
     visibility: hidden;
-    transform: translate3d(-50%, 100%, 0);
+    transform: translateY(-100%);
   }
 }
 
