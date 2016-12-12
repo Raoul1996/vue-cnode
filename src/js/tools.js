@@ -33,6 +33,42 @@ const timeFormatCN = function timeFormatCN(time) {
   return str;
 };
 
+const ajax = function ajax(type, url, params) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 400) {
+        resolve(JSON.parse(xhr.responseText));
+      } else {
+        reject();
+      }
+    };
+
+    xhr.onerror = () => {
+      reject('服务器异常');
+    };
+
+    if (type === 'get') {
+      xhr.open('GET', url, true);
+      xhr.send();
+    } else if (type === 'post') {
+      let str = '';
+
+      if (params) {
+        Object.keys(params).forEach((val) => {
+          str += `&${val}=${params[val]}`;
+        });
+
+        str = str.substring(1);
+      }
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.send(str);
+    }
+  });
+};
+
 // 统一处理api返回的异常信息
 const handleAjaxError = function handleAjaxError(reject, vm, callback) {
   if (!vm || !reject) return;
@@ -95,45 +131,60 @@ const CookieUtil = {
   }
 };
 
-const isLogin = function isLogin(accessToken) {
+const getHostNotifiesCount = function getHostNotifiesCount(accesstoken) {
+  return new Promise((resolve, reject) => {
+    const xhr = ajax('get', `${API.messageCount}?accesstoken=${accesstoken}`);
+
+    xhr.then((data) => {
+      if (data.success) {
+        resolve(data.data);
+      } else {
+        reject(data.error_msg);
+      }
+    }, () => {
+      reject('获取未读信息失败');
+    });
+  });
+};
+
+const getHost = function isLogin(accessToken) {
   return new Promise((resolve, reject) => {
     const token = accessToken || CookieUtil.get('token');
 
     if (!token) {
-      reject();
+      resolve(null);
       return;
     }
 
-    const xhr = new XMLHttpRequest();
+    const xhr = ajax('post', `${API.interface}accesstoken`, {
+      accesstoken: token
+    });
 
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          const data = JSON.parse(xhr.responseText);
+    xhr.then((data) => {
+      if (data.success) {
+        if (accessToken) {
+          const now = new Date();
+          now.setTime(now.getTime() + (1000 * 3600 * 24 * 7)); // 保留7天
 
-          if (data.success) {
-            if (accessToken) {
-              const now = new Date();
-              now.setTime(now.getTime() + (1000 * 3600 * 24 * 7)); // 保留7天
-
-              CookieUtil.set('token', accessToken, now);
-            }
-
-            resolve({ host: data, token });
-          } else {
-            reject();
-          }
-        } else {
-          reject();
+          CookieUtil.set('token', accessToken, now);
         }
-      }
-    };
 
-    xhr.open('post', `${API.interface}accesstoken`, true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send(`accesstoken=${token}`);
+        // 获取未读信息
+        getHostNotifiesCount(token).then((count) => {
+          data.notifiesCount = count;
+          data.accesstoken = token;
+          resolve(data);
+        }, (errorMsg) => {
+          reject(errorMsg);
+        });
+      } else {
+        reject(data.error_msg);
+      }
+    }, () => {
+      reject('getHost：服务器异常');
+    });
   });
 };
 
-export default { timeFormat, timeFormatCN, isLogin, handleAjaxError, CookieUtil };
+export default { timeFormat, timeFormatCN, getHost, handleAjaxError, CookieUtil };
 

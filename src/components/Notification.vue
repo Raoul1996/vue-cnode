@@ -1,37 +1,34 @@
 <template>
-  <transition name="fade-slide">
-    <div class="notification" v-show="show">
-      <div class="Menu Menu--arrowed notification__markup">
-        <div class="notification__header">
-          <button class="btn btn-info notification__markBtn" v-show="hasUnread" @click.stop="markAll">批量处理</button>
-          <span class="notification__title">通知</span>
+  <transition name="menu-fade-slide">
+    <div class="menu menu--arrowed notification" v-show="show">
+      <div class="notification__header">
+        <button class="btn btn-info notification__markBtn" v-show="hasUnread" @click.stop="markAll">批量处理</button>
+        <span class="notification__title">通知</span>
+      </div>
+
+      <div class="notification__mask" :class="'is-' + state">
+        <div class="spinner"></div>
+        <div class="notification__feedback">
+          <p>{{ feedbackMsg[state] }}</p>
         </div>
-
-        <div class="notification__mask" :class="'is-' + state">
-          <div class="spinner"></div>
-          <div class="notification__feedback">
-            <p>{{ feedbackMsg[state] }}</p>
-          </div>
-          <div class="notification__cont">
-            <ul class="list-unstyled" v-if="notifies && notifies.length > 0" @mousewheel.stop="scrollNotifies">
-              <li class="notification__item" v-for="n in notifies" :class="{ 'is-unread': !n.has_read }">
-                <img :src="n.author.avatar_url" alt="" class="avatar avatar--s">
-                <div class="notification__info">
-                  <router-link :to="{ path: '/user/' + n.author.loginname }">
-                    {{ n.author.loginname }}
-                  </router-link>
-                  回复了你的话题
-                  <router-link :to="{ path: '/topic/' + n.topic.id }">
-                    {{ n.topic.title }}
-                  </router-link>
-
-                  <div class="notification__replyTime">
-                    {{ formatReplyTime(n.topic.last_reply_at) }}
-                  </div>
+        <div class="notification__cont">
+          <ul class="list-unstyled" v-if="notifies && notifies.length > 0" @mousewheel.stop="scrollNotifies">
+            <li class="notification__item" v-for="n in notifies" :class="{ 'is-unread': !n.has_read }">
+              <img :src="n.author.avatar_url" alt="" class="avatar avatar--s">
+              <div class="notification__info">
+                <router-link :to="{ path: '/user/' + n.author.loginname }">
+                  {{ n.author.loginname }}
+                </router-link>
+                回复了你的话题
+                <router-link :to="{ path: '/topic/' + n.topic.id }">
+                  {{ n.topic.title }}
+                </router-link>
+                <div class="notification__replyTime">
+                  {{ formatReplyTime(n.topic.last_reply_at) }}
                 </div>
-              </li>
-            </ul>
-          </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -167,35 +164,10 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .fade-slide-enter-active,
-  .fade-slide-leave-active {
-    transition: all .2s linear;
-  }
-
-  .fade-slide-enter,
-  .fade-slide-leave-active {
-    opacity: 0;
-    transform: translate3d(0, -5px, 0);
-  }
-
   .notification {
-    position: absolute;
-    left: -166px;
-    top: 40px;
-    &__markup {
-      border-radius: 2px;
-      width: 360px;
-      background: #fff;
-      position: relative;
-      &::before {
-        top: -8px;
-        border-bottom: 8px solid #e7eaf1;
-      }
-      &::after {
-        top: -7px;
-        border-bottom: 8px solid #ffffff;
-      }
-    }
+    width: 300px;
+    background: #fff;
+    position: relative;
 
     &__header {
       padding: 0 12px;
@@ -206,7 +178,17 @@
 
     &__cont {
       > ul {
-        margin-bottom: 0;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          height: 100%;
+          width: 1px;
+          left: 33px;
+          background: #ebeef5;
+        }
       }
     }
 
@@ -224,7 +206,8 @@
 
     &__mask {
       width: 100%;
-      height: 380px;
+      height: 358px;
+      margin-bottom: -6px;
       overflow-x: hidden;
       overflow-y: auto;
       > div {
@@ -232,7 +215,7 @@
       }
 
       .spinner {
-        margin-top: 163px;
+        margin-top: 8rem;
       }
 
       &.is-loading {
@@ -257,22 +240,18 @@
     }
 
     &__feedback {
+      margin-top: 8rem;
       font-size: 20px;
       color: #9e9e9e;
       text-align: center;
     }
 
     &__item {
-      border-bottom: 1px solid #ebeef5;
-      padding: 15px;
+      padding: 0.75rem;
       overflow: hidden;
       position: relative;
       > .avatar {
         float: left;
-      }
-
-      &:last-child {
-        border: 0 none;
       }
 
       &.is-unread {
@@ -285,11 +264,13 @@
       text-align: left;
       line-height: 1.42857143;
       color: #404040;
+      > a {
+        color: #259;
+      }
     }
 
     &__replyTime {
       color: #B0BCC7;
-      margin-top: 5px;
     }
   }
 

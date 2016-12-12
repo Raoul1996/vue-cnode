@@ -1,0 +1,199 @@
+<template>
+  <div>
+    <div class="ActionBtn"
+         @mouseenter="mouseenter"
+         @mouseleave="mouseleave">
+      <a href="#" class="ActionBtn__link ActionBtn__plus">
+        <img src="../assets/img/cross.png" alt="">
+      </a>
+      <ul>
+        <li v-if="topicId">
+          <a href="#" class="ActionBtn__link ActionBtn__reply"
+             @click.prevent="toggleModal('reply')">
+            <i class="fa fa-reply fa-lg" aria-hidden="true"></i>
+          </a>
+          <span class="tips">回复</span>
+        </li>
+        <li>
+          <a href="#" class="ActionBtn__link ActionBtn__post"
+             @click.prevent="toggleModal('post')">
+            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+          </a>
+          <span class="tips">发布文章</span>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-container">
+      <vc_post-modal ref="postModal" :show="showPostModal"
+                    @post="post" @close="closeModal"></vc_post-modal>
+      <vc_reply-modal ref="replyModal" :show="showReplyModal"
+                     @reply="reply" @close="closeModal"></vc_reply-modal>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { API } from '../js/config';
+  import Tools from '../js/tools';
+  import PostModal from './PostModal';
+  import ReplyModal from './ReplyModal';
+
+  export default {
+    data() {
+      return {
+        showPostModal: false,
+        showReplyModal: false,
+        editArticle: null, // 要编辑的文章信息
+        state: 'normal' // normal || edit
+      };
+    },
+
+    props: {
+      topicId: null, // 文章的ID
+
+      host: {
+        type: Object
+      }
+    },
+
+    components: {
+      'vc_post-modal': PostModal,
+      'vc_reply-modal': ReplyModal
+    },
+
+    methods: {
+      mouseenter() {
+        this.$el.firstChild.classList.add('is-active');
+      },
+
+      mouseleave() {
+        this.$el.firstChild.classList.remove('is-active');
+      },
+
+      checkValid() {
+        if (!this.host) {
+          this.$message.info('请先登录');
+          return false;
+        }
+
+        return true;
+      },
+
+      post(params) {
+        const url = this.state === 'edit' ? API.topicUpdate : API.topics;
+
+        if (this.state === 'edit') {
+          params.topic_id = this.article.topic_id;
+        }
+
+        params.accesstoken = this.host.accesstoken;
+
+        this.$http.post(url, params)
+            .then((response) => {
+              const data = response.data;
+
+              // 跳转到发布的文章页
+              if (data.success) {
+                this.$message.success('发布成功, 正在跳转到文章页');
+
+                this.$refs.postModal.close();
+
+                setTimeout(() => {
+                  this.$router.push({ path: `/topic/${data.topic_id}` });
+                }, 2000);
+              } else {
+                this.$message.error(data.error_msg);
+              }
+            }, (reject) => {
+              Tools.handleAjaxError(reject, this);
+            });
+      },
+
+      editArticle(article) {
+        this.state = 'edit';
+        this.$refs.postModal.setArticle(article);
+        this.showPostModal = true;
+      },
+      // 设置@的人
+      setReply(content) {
+        this.$refs.replyModal.setReply(content);
+        this.showReplyModal = true;
+      },
+
+      reply(content, cb) {
+        const params = {
+          accesstoken: this.host.accesstoken,
+          content
+        };
+
+        this.$http
+            .post(`${API.topic}${this.topicId}/replies`, params)
+            .then((response) => {
+              const data = response.data;
+
+              typeof cb === 'function' && cb(data.success);
+
+              if (data.success) {
+                this.$message.success('回复成功');
+
+                // flash comments
+                this.$emit('afterReply', () => {
+                  this.toggleModal('reply');
+                });
+              } else {
+                this.$message.error(data.error_msg);
+              }
+            }, (reject) => {
+              const data = reject.data;
+
+              Tools.handleAjaxError(reject, this, () => {
+                typeof cb === 'function' && cb(data.success);
+              });
+            });
+      },
+
+      toggleModal(type) {
+        const isValid = this.checkValid();
+
+        if (type === 'post') {
+          if (!this.showPostModal) {
+            isValid && (this.showPostModal = true);
+          } else {
+            this.$refs.postModal.close();
+          }
+        } else if (type === 'reply') {
+          if (!this.showReplyModal) {
+            isValid && (this.showReplyModal = true);
+          } else {
+            this.$refs.replyModal.close();
+          }
+        }
+      },
+
+      closeModal(type, cb) {
+        if (type === 'post') {
+          this.showPostModal = false;
+        } else if (type === 'reply') {
+          this.showReplyModal = false;
+        }
+
+        typeof cb === 'function' && cb();
+      }
+    }
+  };
+</script>
+<style rel="stylesheet/scss" lang="scss" scoped>
+  .modal-container {
+    position: fixed;
+    bottom: 0.25rem;
+    right: 7rem;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    z-index: 1000;
+    > div {
+      float: right;
+      margin-right: 0.75rem;
+    }
+  }
+</style>
