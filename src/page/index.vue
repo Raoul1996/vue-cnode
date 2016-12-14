@@ -9,7 +9,7 @@
     </GlobalNav>
     <div class="page__main">
       <div class="container">
-        <div v-if="articles && articles.length > 0">
+        <div class="home-content" v-if="articles && articles.length > 0">
           <ArticleList  :articles="articles"></ArticleList>
           <div class="loadmore-wrap" v-show="showLoadMoreModal">
             <LoadMore :state="loadMoreType" @loadMore="loadMore"></LoadMore>

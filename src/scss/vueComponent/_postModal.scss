@@ -27,8 +27,8 @@
       cursor: pointer;
       &.active,
       &:hover {
-        border-color: $blue-base;
-        color: $blue-base;
+        border-color: $brand-primary;
+        color: $brand-primary;
       }
     }
   }
