@@ -42,7 +42,7 @@
                     <a href="https://github.com/jiananle/vue-cnode" target="_blank">项目地址</a>
                   </li>
                   <li>
-                    <a href="http://cnode.daoapp.io/#/" target="_blank">在线预览</a>
+                    <a href="http://cnode.daoapp.io/#/" target="_blank">预览(旧版)</a>
                   </li>
                 </ul>
               </div>
