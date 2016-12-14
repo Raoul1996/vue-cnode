@@ -14,13 +14,13 @@
   }
 
   &::after {
-    background: #6cc88a;
+    background: $brand-success;
     transform: translateX(-20px);
     animation: moveRight 0.6s linear infinite alternate;
   }
 
   &::before {
-    background: #4fc3f7;
+    background: $brand-info;
     transform: translateX(20px);
     animation: moveLeft 0.6s linear infinite alternate;
   }

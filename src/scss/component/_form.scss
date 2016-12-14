@@ -24,6 +24,6 @@ label {
               box-shadow ease-in-out .15s;
   &:focus {
     outline: none;
-    border-color: #00A9E8;
+    border-color: $brand-primary;
   }
 }

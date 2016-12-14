@@ -1,25 +1,23 @@
 <template>
   <div>
-    <div class="ActionBtn"
+    <div class="action-btn"
          @mouseenter="mouseenter"
          @mouseleave="mouseleave">
-      <a href="#" class="ActionBtn__link ActionBtn__plus">
+      <a href="#" class="action-btn__link action-btn__plus">
         <img src="../assets/img/cross.png" alt="">
       </a>
       <ul>
         <li v-if="topicId">
-          <a href="#" class="ActionBtn__link ActionBtn__reply"
+          <a href="#" class="tooltips tooltips--left action-btn__link action-btn__reply" aria-label="回复"
              @click.prevent="toggleModal('reply')">
             <i class="fa fa-reply fa-lg" aria-hidden="true"></i>
           </a>
-          <span class="tips">回复</span>
         </li>
         <li>
-          <a href="#" class="ActionBtn__link ActionBtn__post"
+          <a href="#" class="tooltips tooltips--left action-btn__link action-btn__post" aria-label="发布文章"
              @click.prevent="toggleModal('post')">
             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
           </a>
-          <span class="tips">发布文章</span>
         </li>
       </ul>
     </div>

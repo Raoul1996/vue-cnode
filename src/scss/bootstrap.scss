@@ -1,8 +1,10 @@
+@import "variables";
+@import "mixins";
+
 // base
 @import "base/normalize";
 @import "base/reboot";
 @import "base/utils";
-@import "base/variables";
 @import "base/animate";
 @import "base/scaffold";
 
@@ -15,6 +17,9 @@
 @import "component/message";
 @import "component/modal";
 @import "component/spinner";
+@import "component/tag";
+@import "component/ribbon";
+@import "component/tooltips";
 
 // vueComponent
 @import "vueComponent/actionBtn";
@@ -25,4 +30,5 @@
 @import "vueComponent/postModal";
 
 //page
+@import "page/index";
 @import "page/user";
