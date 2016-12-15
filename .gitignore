@@ -1,8 +1,19 @@
 .DS_Store
 .idea
 node_modules/
+build/
+config/
 dist/
+src/
+static/
 preview/
+.babelrc
+.editorconfig
+.eslintignore
+.eslintrc.js
+.jscsrc
+package.json
+README.md
 
 npm-debug.log
 test/unit/coverage
