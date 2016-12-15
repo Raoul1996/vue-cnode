@@ -1,3 +1,3 @@
-# vue-cnode
+# vue-cnode 预览页面
 Vue-CNode -- Material Design
-## 预览页面
+源码请在 master branch 查看
