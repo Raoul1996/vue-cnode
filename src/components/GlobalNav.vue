@@ -42,7 +42,7 @@
                     <a href="https://github.com/jiananle/vue-cnode" target="_blank">项目地址</a>
                   </li>
                   <li>
-                    <a href="https://jiananle.github.io/vue-cnode/index.html#/" target="_blank">预览</a>
+                    <a href="https://jiananle.github.io/vue-cnode" target="_blank">预览</a>
                   </li>
                 </ul>
               </div>
