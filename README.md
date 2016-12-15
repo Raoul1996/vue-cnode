@@ -4,7 +4,7 @@
 
 - 用 Vue 做的 [CNode](https://cnodejs.org/) 官网，一个单页面应用， 实现了所有的API功能。
 - [Material Design](https://getmdl.io/index.html)风格，参考了[mdbootstrap](https://github.com/mdbootstrap/bootstrap-material-design)
-- [在线预览效果](http://cnode.daoapp.io) （这里是旧版 Orz）
+- [预览地址](https://jiananle.github.io/vue-cnode/index.html#/)
 - 项目结构由[Vue的脚手架](http://vue-loader.vuejs.org/en/start/setup.html)生成
 
 ## 注意
