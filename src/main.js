@@ -7,7 +7,6 @@ import routes from './js/routes';
 require('./scss/bootstrap.scss');
 require('./assets/font-awesome.min.css');
 
-
 // vueRouter
 Vue.use(VueRouter);
 Vue.use(VueResource);
