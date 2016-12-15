@@ -28,5 +28,13 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
+  },
+  preview: {
+    env: 'preview',
+    index: path.resolve(__dirname, '../preview/index.html'),
+    assetsRoot: path.resolve(__dirname, '../preview'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './',
+    productionSourceMap: true
   }
 }

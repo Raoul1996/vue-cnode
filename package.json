@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "preview": "node build/preview.js"
   },
   "dependencies": {
     "simplemde": "^1.11.2",
