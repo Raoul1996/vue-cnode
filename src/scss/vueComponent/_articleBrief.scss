@@ -1,3 +1,17 @@
+.brief-list-enter {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.brief-list-enter-active {
+  transition: all 1s cubic-bezier(0.7,0,0.3,1);
+}
+
+.brief-list-leave-active {
+  opacity: 0;
+  transition: opacity .5s cubic-bezier(0.7,0,0.3,1);
+}
+
 .article-brief {
   position: relative;
   min-height: 5rem;

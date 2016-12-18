@@ -43,7 +43,7 @@
       return {
         mde: null,
         categories: articleCategory,
-        selectedCategory: '',
+        selectedCategory: 'ask',
         title: '',
         state: 'ready' // 当前的状态 ready || posting
       };

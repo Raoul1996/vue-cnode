@@ -1,5 +1,10 @@
+.cell-move {
+  transition: transform .8s;
+}
+
 .comments {
   &-container {
+    position: relative;
     padding: 0 1rem;
     margin-bottom: 1rem;
   }
@@ -9,7 +14,7 @@
     font-size: .8rem;
     line-height: 1.1rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     &::after {
       content: '';
       position: absolute;
@@ -28,9 +33,19 @@
     }
   }
 
+  &__sort {
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    transform: translateX(-50%);
+    .btn {
+      padding: 5px 16px;
+    }
+  }
+
   &__item {
     position: relative;
-    margin-top: 1.6rem;
+    margin-top: 1rem;
     &:hover {
       .comments__ope-btn {
         visibility: visible;

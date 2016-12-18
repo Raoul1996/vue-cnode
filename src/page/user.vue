@@ -30,7 +30,10 @@
             </h2>
           </div>
           <div class="profile__content">
-            <ArticleList :articles="articles"></ArticleList>
+            <ArticleList :articles="articles" v-if="articles && articles.length > 0"></ArticleList>
+            <p class="page__feedback" v-else>
+              还没收藏文章
+            </p>
           </div>
         </div>
         <div class="page__feedback" v-else>

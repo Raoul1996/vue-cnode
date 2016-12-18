@@ -1,8 +1,8 @@
 <template>
   <div class="page">
-    <PageLoading :show="isPageLoading"></PageLoading>
+    <Door :state="doorState" @ready="doorIsReady"></Door>
     <ActionBtn :host="host"></ActionBtn>
-    <GlobalNav @ready="ready" :isLoading="isNavLoading">
+    <GlobalNav @ready="ready" :isLoading="isLoading">
       <li class="globalnav__link" :class="{'is-active': currType === n.tag}" v-for="n in navs">
         <a href="#" @click.prevent="selectNav(n.tag)">{{ n.name }}</a>
       </li>
@@ -25,7 +25,7 @@
 <script>
   import { API } from '../js/config';
   import Tools from '../js/tools';
-  import PageLoading from '../components/PageLoading';
+  import Door from '../components/Door';
   import GlobalNav from '../components/GlobalNav';
   import ActionBtn from '../components/ActionButton';
   import ArticleList from '../components/ArticleBrief';
@@ -43,8 +43,9 @@
 
       return {
         navs,
-        isPageLoading: false, // page loading
-        isNavLoading: false, // 切换类型时的loading
+        doorState: 'init', // init | start | end
+        // barState: 'init', // init | start | end
+        isLoading: false,
         showLoadMoreModal: false,
         loadMoreType: 0,  // 0(loading) | 1(load more) | 2(none)
         isLoadingMore: false, // 是否正在加載更多
@@ -56,24 +57,24 @@
     },
 
     components: {
-      PageLoading,
+      Door,
       ActionBtn,
       GlobalNav,
       ArticleList,
       LoadMore
     },
 
-    mounted() {
-      this.isPageLoading = true;
-
-      this.getArticleType(this.navs[0].tag, () => {
-        this.isPageLoading = false;
-      });
-
-      this.addScrollEvt();
-    },
-
     methods: {
+      // 启动页加载完毕（动画完成）
+      doorIsReady() {
+        this.doorState = 'start';
+        this.getArticleType(this.navs[0].tag, () => {
+          this.doorState = 'end';
+        });
+
+        this.addScrollEvt();
+      },
+
       ready(data) {
         this.host = data;
       },
@@ -105,9 +106,9 @@
       },
 
       selectNav(tag) {
-        this.isNavLoading = true;
+        this.isLoading = true;
         this.getArticleType(tag, () => {
-          this.isNavLoading = false;
+          this.isLoading = false;
         });
       },
 

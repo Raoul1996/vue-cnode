@@ -13,6 +13,7 @@
                       @collect="handleCollect"
                       @edit="handleEdit">
           </VC-Article>
+
           <Comments :comments="article.replies"
                        :hasHost="!!host"
                        @reply="handleReply"

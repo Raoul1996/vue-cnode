@@ -186,5 +186,28 @@ const getHost = function isLogin(accessToken) {
   });
 };
 
-export default { timeFormat, timeFormatCN, getHost, handleAjaxError, CookieUtil };
+const getAnimEventName = function getAnimEventName() {
+  const animEndEventNames = {
+    WebkitAnimation: 'webkitAnimationEnd',
+    OAnimation: 'oAnimationEnd',
+    msAnimation: 'MSAnimationEnd',
+    animation: 'animationend'
+  };
+
+  const el = document.createElement('div');
+  let animEventName;
+
+  Object.keys(animEndEventNames).every((val) => {
+    if (el.style[val] !== undefined) {
+      animEventName = animEndEventNames[val];
+      return false;
+    }
+
+    return true;
+  });
+
+  return animEventName;
+};
+
+export default { timeFormat, timeFormatCN, getHost, handleAjaxError, CookieUtil, getAnimEventName };
 

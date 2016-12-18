@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <transition-group tag="ul" name="brief-list" appear>
     <li class="article-brief" v-for="a in articles" :key="a.id">
       <router-link :to="{ path: '/user/' + a.author.loginname }" class="article-brief__avatar">
         <img :src="a.author.avatar_url" class="avatar avatar--m">
@@ -26,7 +26,7 @@
         <span class="ribbon ribbon--red" v-if="a.good">精华</span>
       </div>
     </li>
-  </ul>
+  </transition-group>
 </template>
 <script>
   import { articleTypeMap } from '../js/config';
@@ -50,3 +50,4 @@
     }
   };
 </script>
+<style rel="stylesheet/scss" lang="scss" scoped></style>
