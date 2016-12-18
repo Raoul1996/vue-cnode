@@ -30,7 +30,7 @@ module.exports = {
     cssSourceMap: false
   },
   preview: {
-    env: 'preview',
+    env: '"preview"',
     index: path.resolve(__dirname, '../preview/index.html'),
     assetsRoot: path.resolve(__dirname, '../preview'),
     assetsSubDirectory: 'static',
