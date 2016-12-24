@@ -11,6 +11,7 @@
 
 - 对于登录功能，由于没有相应的API，所以这里就简单粗暴直接使用[accessToken](https://cnodejs.org/api)进行登录了 ╮(╯_╰)╭
 - 使用现代浏览器进行浏览
+- 安装node-sass不成功的（下载不动）可以查看[这里](https://github.com/lmk123/blog/issues/28)
 
 ## 开始
 
