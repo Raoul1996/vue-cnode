@@ -19,7 +19,7 @@
     data() {
       return {
         animated: false,
-        circleState: '',
+        circleState: 'init',
         animEventName: ''
       };
     },

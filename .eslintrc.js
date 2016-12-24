@@ -44,9 +44,8 @@ module.exports = {
     // http://eslint.cn/docs/rules/no-param-reassign
     "no-param-reassign": "off",
 
-    "arrow-body-style": ["error", "as-needed"],
     // http://eslint.cn/docs/rules/no-unused-expressions
-    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": false }],
     // http://eslint.cn/docs/rules/no-mixed-operators
     "no-mixed-operators": [
       "error",
@@ -65,8 +64,7 @@ module.exports = {
     "no-plusplus": "off",
     // http://eslint.cn/docs/rules/new-cap
     "new-cap": ["error", { "capIsNewExceptions": ["Message", "Snap"] }],
-    //
-    "no-unused-vars": ["error", { "args": "none" }],
+
     // http://eslint.cn/docs/rules/quote-props
     "quote-props": "off"
   }

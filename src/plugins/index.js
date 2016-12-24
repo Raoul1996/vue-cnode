@@ -2,7 +2,7 @@ import Message from './message';
 
 const Plugins = {};
 
-Plugins.install = (Vue, options) => {
+Plugins.install = (Vue) => {
   Vue.prototype.$message = Message;
 };
 

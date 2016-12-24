@@ -38,20 +38,32 @@
     mounted() {
       this.$circle = this.$el.querySelector('.svg-circle');
       this.totalLen = this.$circle.getTotalLength();
-      this.$circle.style.strokeDasharray = this.$circle.style.strokeDashoffset = this.totalLen;
+      this.init();
     },
     watch: {
       state(newVal) {
-        if (newVal === 'start') {
-          this.startLoading();
-        } else if (newVal === 'end') {
-          if (this.preLoading) {
-            this.endLoading();
-          }
+        switch (newVal) {
+          case 'start':
+            this.startLoading();
+            break;
+          case 'end':
+            if (this.preLoading) {
+              this.endLoading();
+            }
+            break;
+          case 'init':
+            this.init();
+            break;
+          default:
+            return;
         }
       }
     },
     methods: {
+      init() {
+        this.$circle.style.strokeDasharray = this.$circle.style.strokeDashoffset = this.totalLen;
+      },
+
       startLoading() {
         let progress = 0;
 

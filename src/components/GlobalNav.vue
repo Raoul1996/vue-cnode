@@ -95,7 +95,7 @@
       this.getHost();
 
       // see https://css-tricks.com/dangers-stopping-event-propagation/
-      document.documentElement.addEventListener('click', () => {
+      document.documentElement.addEventListener('click', (event) => {
         let parent = event.target;
         let isInside = false;
 

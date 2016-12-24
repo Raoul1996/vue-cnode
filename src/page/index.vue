@@ -64,15 +64,16 @@
       LoadMore
     },
 
+    mounted() {},
     methods: {
       // 启动页加载完毕（动画完成）
       doorIsReady() {
         this.doorState = 'start';
         this.getArticleType(this.navs[0].tag, () => {
           this.doorState = 'end';
-        });
 
-        this.addScrollEvt();
+          this.addScrollEvt();
+        });
       },
 
       ready(data) {
@@ -122,7 +123,9 @@
           if (this.isLoadingMore) return;
 
           const docH = Math.max(doc.clientHeight, doc.scrollHeight);
-          const bodyScrollTop = body.scrollTop;
+          // fix firefox body.scrollTop always return 0
+          // see http://stackoverflow.com/questions/28633221/document-body-scrolltop-firefox-returns-0-only-js
+          const bodyScrollTop = window.pageYOffset || body.scrollTop || doc.scrollTop || 0;
 
           if ((bodyScrollTop + winH - docH) >= 0) {
             if (this.loadMoreType === 2) {
