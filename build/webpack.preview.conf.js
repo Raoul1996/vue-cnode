@@ -13,7 +13,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   module: {
     loaders: utils.styleLoaders({ sourceMap: config.preview.productionSourceMap, extract: true })
   },
-  devtool: '#eval-source-map',
+  // devtool: '#eval-source-map',
   output: {
     path: config.preview.assetsRoot,
     publicPath: config.preview.assetsPublicPath,
